@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\jakub\\source\\repos\\test\\",
+  "WorkspaceRootPath": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|C:\\Users\\jakub\\source\\repos\\test\\test\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|solutionrelative:test\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
-              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\test\\test\\main.cpp",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\main.cpp",
               "RelativeDocumentMoniker": "test\\main.cpp",
-              "ToolTip": "C:\\Users\\jakub\\source\\repos\\test\\test\\main.cpp",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\main.cpp",
               "RelativeToolTip": "test\\main.cpp",
-              "ViewState": "AgIAANUDAAAAAAAAAAAQwOoDAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAcwBgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-12T19:33:56.522Z",
               "EditorCaption": ""
