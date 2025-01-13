@@ -42,7 +42,7 @@ bool loadScoreboard(std::vector<PlayerData>& players)
     }
 
     file.close();
-
+    //sortowañsko
     std::sort(players.begin(), players.end(),
         [](const PlayerData& a, const PlayerData& b) { return a.score > b.score; }
     );
