@@ -173,7 +173,6 @@ void Game::handleEvents()
             currentState = GameState::EXIT_CONFIRM;
         }
 
-        // Gdy jesteœmy w stanie ENTER_NAME, obs³ugujemy wpisywanie nicku
         if (currentState == GameState::ENTER_NAME)
         {
             handleEnterNameEvent(event);
@@ -215,7 +214,6 @@ void Game::handleEvents()
                     }
                     else
                     {
-                        // Ju¿ mamy nick, wiêc od razu loadLevel
                         level = 1;
                         loadLevel(level);
                         score = 0;
@@ -233,7 +231,6 @@ void Game::handleEvents()
                         ++level;
                         if (!nicknameEntered)
                         {
-                            // Tylko pierwszy raz pytamy o nick
                             currentNickname.clear();
                             currentState = GameState::ENTER_NAME;
                         }
@@ -313,7 +310,116 @@ void Game::handleEvents()
             }
             break;
 
-            // analogicznie 4..9
+			case sf::Keyboard::Num4:
+			{
+				if (!nicknameEntered)
+				{
+					level = 4;
+					currentNickname.clear();
+					currentState = GameState::ENTER_NAME;
+				}
+				else
+				{
+					level = 4;
+					loadLevel(level);
+					score = 0;
+					currentState = GameState::PLAY;
+				}
+			}
+
+			break;
+
+			case sf::Keyboard::Num5:
+			{
+				if (!nicknameEntered)
+				{
+					level = 5;
+					currentNickname.clear();
+					currentState = GameState::ENTER_NAME;
+				}
+				else
+				{
+					level = 5;
+					loadLevel(level);
+					score = 0;
+					currentState = GameState::PLAY;
+				}
+               
+			}
+			break;
+
+			case sf::Keyboard::Num6:
+			{
+				if (!nicknameEntered)
+				{
+					level = 6;
+					currentNickname.clear();
+					currentState = GameState::ENTER_NAME;
+				}
+				else
+				{
+					level = 6;
+					loadLevel(level);
+					score = 0;
+					currentState = GameState::PLAY;
+				}
+			}
+			break;
+
+			case sf::Keyboard::Num7:
+			{
+				if (!nicknameEntered)
+				{
+					level = 7;
+					currentNickname.clear();
+					currentState = GameState::ENTER_NAME;
+				}
+				else
+				{
+					level = 7;
+					loadLevel(level);
+					score = 0;
+					currentState = GameState::PLAY;
+				}
+			}
+			break;
+
+			case sf::Keyboard::Num8:
+			{
+				if (!nicknameEntered)
+				{
+					level = 8;
+					currentNickname.clear();
+					currentState = GameState::ENTER_NAME;
+				}
+				else
+				{
+					level = 8;
+					loadLevel(level);
+					score = 0;
+					currentState = GameState::PLAY;
+				}
+			}
+			break;
+                
+			case sf::Keyboard::Num9:
+			{
+				if (!nicknameEntered)
+				{
+					level = 9;
+					currentNickname.clear();
+					currentState = GameState::ENTER_NAME;
+				}
+				else
+				{
+					level = 9;
+					loadLevel(level);
+					score = 0;
+					currentState = GameState::PLAY;
+				}
+			}
+			break;
+
 
             case sf::Keyboard::Num0:
             {
@@ -364,9 +470,9 @@ void Game::update(float deltaTime)
 {
     switch (currentState)
     {
+        //menu stuff + berb w tle
     case GameState::MENU:
     {
-        // Animacja sprite'a (bird) w menu
         sf::Vector2f pos = menuAnimSprite.getPosition();
         pos += menuAnimVelocity * deltaTime;
 
@@ -477,7 +583,6 @@ void Game::update(float deltaTime)
     break;
 
     case GameState::TUTORIAL:
-        // W tym stanie wyœwietlamy textTutorial
         break;
 
     case GameState::SCOREBOARD:
@@ -521,7 +626,7 @@ void Game::update(float deltaTime)
         break;
     }
 
-    // Aktualizacja Score/Level w wybranych stanach
+    // Aktualizacja Score/Level
     if (currentState == GameState::PLAY
         || currentState == GameState::LEVEL_COMPLETE
         || currentState == GameState::GAME_OVER
@@ -579,7 +684,7 @@ void Game::loadLevel(int lvl)
     // nieruchomy sprite (drzewo)
     {
         sf::Sprite tree(treeTexture);
-        tree.setScale(0.4f, 0.4f);
+        tree.setScale(1.f, 1.f);
         float px = static_cast<float>(rand() % (WINDOW_WIDTH - 200));
         float py = WINDOW_HEIGHT / 2.f + static_cast<float>(rand() % 200);
         tree.setPosition(px, py);
@@ -613,7 +718,6 @@ void Game::render()
 
     default:
         window.draw(menuBackgroundSprite);
-        // wyœwietl animowanego ptaka w MENU
         if (currentState == GameState::MENU)
         {
             window.draw(menuAnimSprite);
@@ -655,7 +759,7 @@ void Game::render()
         sf::Text confirmText("Czy na pewno chcesz wyjsc?\n[T] - Tak, [N] - Nie",
             font, 50);
         confirmText.setFillColor(sf::Color::Red);
-        confirmText.setPosition(200.f, 200.f);
+        confirmText.setPosition(500.f, 270.f);
         confirmText.setOutlineColor(sf::Color::Black);
         confirmText.setOutlineThickness(2.f);
 
