@@ -1,4 +1,0 @@
-LEVEL 1
-SCORE 0
-PLAYERS 1
-abuk 0
