@@ -5,6 +5,18 @@
     {
       "AbsoluteMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|solutionrelative:test\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\dog.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|solutionrelative:test\\dog.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\cloud.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|solutionrelative:test\\cloud.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\bird.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|solutionrelative:test\\bird.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,17 +26,53 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "bird.png",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\bird.png",
+              "RelativeDocumentMoniker": "test\\bird.png",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\bird.png",
+              "RelativeToolTip": "test\\bird.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-01-13T12:45:15.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "dog.png",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\dog.png",
+              "RelativeDocumentMoniker": "test\\dog.png",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\dog.png",
+              "RelativeToolTip": "test\\dog.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-01-13T12:41:14.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "cloud.png",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\cloud.png",
+              "RelativeDocumentMoniker": "test\\cloud.png",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\cloud.png",
+              "RelativeToolTip": "test\\cloud.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-01-13T12:39:59.976Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\main.cpp",
               "RelativeDocumentMoniker": "test\\main.cpp",
-              "ToolTip": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\main.cpp",
-              "RelativeToolTip": "test\\main.cpp",
-              "ViewState": "AgIAACEEAAAAAAAAAAAQwEYEAAAnAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\main.cpp*",
+              "RelativeToolTip": "test\\main.cpp*",
+              "ViewState": "AgIAAGcCAAAAAAAAAAAUwHICAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-12T19:33:56.522Z",
               "EditorCaption": ""

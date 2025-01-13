@@ -9,13 +9,12 @@
 #include <ctime>
 #include <cstdlib>
 #include <memory>
-#include <algorithm> // std::sort
+#include <algorithm>
 
 // -----------------------------------------------------------------------------
 // 1. STRUKTURY I DEFINICJE
 // -----------------------------------------------------------------------------
 
-// Ustalmy sobie sta³e w jednym miejscu, aby u³atwiæ skalowanie gry:
 static const unsigned WINDOW_WIDTH = 1920;
 static const unsigned WINDOW_HEIGHT = 1080;
 
@@ -44,6 +43,13 @@ enum class GameState
     GAME_OVER,
     LEVEL_COMPLETE,
     EXIT
+};
+
+// Prosta struktura do „ruchomych” dekoracji t³a (psy, chmury itp.)
+struct MovingSprite
+{
+    sf::Sprite sprite;
+    sf::Vector2f velocity;
 };
 
 // -----------------------------------------------------------------------------
@@ -92,7 +98,7 @@ bool loadScoreboard(std::vector<PlayerData>& players)
 
     file.close();
 
-    // Sortowanie – od najlepszego (najwiêkszy score) do najgorszego
+    // Sort – od najwy¿szego wyniku do najni¿szego
     std::sort(players.begin(), players.end(),
         [](const PlayerData& a, const PlayerData& b) {
             return a.score > b.score;
@@ -113,13 +119,13 @@ private:
     sf::Vector2f velocity;
 
 public:
-    Ball(float radius = 12.0f)
+    Ball(float radius = 12.f)
     {
         shape.setRadius(radius);
         shape.setFillColor(sf::Color::Yellow);
         shape.setOrigin(radius, radius);
         shape.setPosition(WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 2.f);
-        velocity = sf::Vector2f(300.f, 300.f); // Szybsza pi³ka na wiêksze okno
+        velocity = sf::Vector2f(300.f, 300.f);
     }
 
     void update(float deltaTime) override
@@ -191,18 +197,18 @@ public:
         shape.setFillColor(sf::Color::Cyan);
         shape.setOrigin(size.x / 2.f, size.y / 2.f);
         shape.setPosition(WINDOW_WIDTH / 2.f, WINDOW_HEIGHT - 80.f);
-        speed = 600.f; // Szybsze przesuwanie paletki
+        speed = 600.f;
     }
 
     void update(float deltaTime) override
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
-            || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ||
+            sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         {
             shape.move(-speed * deltaTime, 0.f);
         }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
-            || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) ||
+            sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
             shape.move(speed * deltaTime, 0.f);
         }
@@ -250,7 +256,7 @@ public:
     {
         shape.setPointCount(5);
         shape.setPoint(0, sf::Vector2f(0.f, 0.f));
-        shape.setPoint(1, sf::Vector2f(50.f, 0.f));
+        shape.setPoint(1, sf::Vector2f(20.f, 0.f));
         shape.setPoint(2, sf::Vector2f(70.f, 20.f));
         shape.setPoint(3, sf::Vector2f(50.f, 40.f));
         shape.setPoint(4, sf::Vector2f(0.f, 30.f));
@@ -278,7 +284,7 @@ public:
     RectBlock(sf::Vector2f position)
     {
         shape.setSize(sf::Vector2f(60.f, 30.f));
-        shape.setFillColor(sf::Color::Blue);
+        shape.setFillColor(sf::Color::White);
         shape.setPosition(position);
     }
     void update(float) override {}
@@ -301,7 +307,7 @@ public:
     CircleTarget(sf::Vector2f position, float radius)
     {
         shape.setRadius(radius);
-        shape.setFillColor(sf::Color::Green);
+        shape.setFillColor(sf::Color::Red);
         shape.setOrigin(radius, radius);
         shape.setPosition(position);
     }
@@ -316,7 +322,7 @@ public:
     }
 };
 
-// Prostok¹ty (poziom 4, 6, 8, 10 – np. do wykorzystania)
+// Wiêkszy prostok¹t
 class BigRectBlock : public Target
 {
 private:
@@ -325,7 +331,7 @@ public:
     BigRectBlock(sf::Vector2f position)
     {
         shape.setSize(sf::Vector2f(80.f, 40.f));
-        shape.setFillColor(sf::Color(200, 100, 200));
+        shape.setFillColor(sf::Color::Magenta);
         shape.setPosition(position);
     }
     void update(float) override {}
@@ -339,7 +345,7 @@ public:
     }
 };
 
-// Klasa do rysowania obramowania (dla ni¿szych poziomów)
+// Klasa do rysowania prostego obramowania (dla ni¿szych poziomów)
 class StaticBackground
 {
 private:
@@ -350,7 +356,7 @@ public:
         border.setSize(sf::Vector2f((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT));
         border.setOutlineColor(sf::Color::White);
         border.setFillColor(sf::Color::Transparent);
-        border.setOutlineThickness(2.f);
+        border.setOutlineThickness(3.f);
         border.setPosition(0.f, 0.f);
     }
 
@@ -372,15 +378,16 @@ private:
     Paddle paddle;
     std::vector<std::unique_ptr<Target>> blocks;
 
-    // ZAMIANA: zamiast shape'ów, u¿ywamy sprite'ów (poziomy 5-6, ... do 10):
-    std::vector<sf::Sprite> backgroundSprites;
+    // Dekoracje nieruchome (np. drzewo, ptak) + wektor z "ruchomymi" obiektami
+    std::vector<sf::Sprite> staticSprites;
+    std::vector<MovingSprite> movingSprites;
 
-    // Tekstury do t³a "dynamicznego" (np. chmury, drzewo itp.) 
-    std::vector<sf::Texture> backgroundTextures;
-
-    // Tekstura do t³a w menu (dla ró¿nych stanów poza PLAY)
+    // Tekstury do t³a menu i do œwiata
     sf::Texture menuBackgroundTexture;
     sf::Sprite  menuBackgroundSprite;
+
+    sf::Texture dogTexture, treeTexture;
+    sf::Texture cloudTexture, birdTexture;
 
     // Teksty
     sf::Font font;
@@ -424,70 +431,65 @@ public:
             std::cerr << "Nie udalo sie zaladowac czcionki!\n";
         }
 
-        // 1) £adujemy wszystkie potrzebne tekstury do backgroundTextures:
-        sf::Texture t1, t2, t3, t4, t5;
-        if (!t1.loadFromFile("tree.png"))
-            std::cerr << "Blad wczytywania tree.png\n";
-        if (!t2.loadFromFile("cloud.png"))
-            std::cerr << "Blad wczytywania cloud.png\n";
-        if (!t3.loadFromFile("bush.png"))
-            std::cerr << "Blad wczytywania bush.png\n";
-        if (!t4.loadFromFile("dog.png"))
-            std::cerr << "Blad wczytywania dog.png\n";
-        if (!t5.loadFromFile("bird.png"))
-            std::cerr << "Blad wczytywania bird.png\n";
-
-        backgroundTextures.push_back(t1);
-        backgroundTextures.push_back(t2);
-        backgroundTextures.push_back(t3);
-        backgroundTextures.push_back(t4);
-        backgroundTextures.push_back(t5);
-
-        // Tekstura do t³a w menu / scoreboard / itp.
+        // Wczytanie t³a menu
         if (!menuBackgroundTexture.loadFromFile("menu_bg.png"))
         {
             std::cerr << "Blad wczytywania menu_bg.png\n";
         }
+        // Skalowanie, aby wype³niæ ca³y ekran
         menuBackgroundSprite.setTexture(menuBackgroundTexture);
+        float scaleX = (float)WINDOW_WIDTH / menuBackgroundTexture.getSize().x;
+        float scaleY = (float)WINDOW_HEIGHT / menuBackgroundTexture.getSize().y;
+        menuBackgroundSprite.setScale(scaleX, scaleY);
+
+        // Wczytanie innych tekstur
+        if (!dogTexture.loadFromFile("dog.png"))
+            std::cerr << "Blad wczytywania dog.png\n";
+        if (!treeTexture.loadFromFile("tree.png"))
+            std::cerr << "Blad wczytywania tree.png\n";
+        if (!cloudTexture.loadFromFile("cloud.png"))
+            std::cerr << "Blad wczytywania cloud.png\n";
+        if (!birdTexture.loadFromFile("bird.png"))
+            std::cerr << "Blad wczytywania bird.png\n";
 
         // Ustawienia tekstów
         textScore.setFont(font);
-        textScore.setCharacterSize(34);
+        textScore.setCharacterSize(40);
         textScore.setFillColor(sf::Color::Green);
         textScore.setPosition(10.f, 10.f);
 
         textLevel.setFont(font);
-        textLevel.setCharacterSize(34);
+        textLevel.setCharacterSize(40);
         textLevel.setFillColor(sf::Color::Cyan);
         textLevel.setPosition(10.f, 60.f);
 
         textTutorial.setFont(font);
-        textTutorial.setCharacterSize(40);
+        textTutorial.setCharacterSize(50);
         textTutorial.setFillColor(sf::Color::Yellow);
         textTutorial.setPosition(150.f, 150.f);
 
         textMenu.setFont(font);
-        textMenu.setCharacterSize(50);
+        textMenu.setCharacterSize(60);
         textMenu.setFillColor(sf::Color::Yellow);
         textMenu.setPosition(200.f, 200.f);
 
         textGameOver.setFont(font);
-        textGameOver.setCharacterSize(50);
+        textGameOver.setCharacterSize(60);
         textGameOver.setFillColor(sf::Color::Red);
         textGameOver.setPosition(150.f, 250.f);
 
         textLevelComplete.setFont(font);
-        textLevelComplete.setCharacterSize(50);
+        textLevelComplete.setCharacterSize(60);
         textLevelComplete.setFillColor(sf::Color::Green);
         textLevelComplete.setPosition(150.f, 250.f);
 
         textScoreboard.setFont(font);
-        textScoreboard.setCharacterSize(32);
+        textScoreboard.setCharacterSize(36);
         textScoreboard.setFillColor(sf::Color::White);
         textScoreboard.setPosition(100.f, 100.f);
 
         textEnterName.setFont(font);
-        textEnterName.setCharacterSize(40);
+        textEnterName.setCharacterSize(50);
         textEnterName.setFillColor(sf::Color::Yellow);
         textEnterName.setPosition(100.f, 100.f);
 
@@ -506,191 +508,136 @@ public:
     }
 
 private:
-    // Tworzenie sprite'a z losow¹ tekstur¹ z wektora backgroundTextures
-    sf::Sprite createRandomSprite()
+    // Pomocnicza metoda: sprawdza czy œwiat jest typu 1 (zielony) czy typu 2 (niebieski)
+    // Dla uproszczenia: poziomy nieparzyste >= 3 -> typ 1, parzyste >= 4 -> typ 2.
+    bool isTypeOneWorld(int lvl) const
     {
-        int idx = rand() % backgroundTextures.size();
-        sf::Sprite sprite;
-        sprite.setTexture(backgroundTextures[idx], true);
-
-        return sprite;
+        // Dla lvl < 3 - w ogóle inny styl
+        if (lvl < 3) return false;
+        // Nieparzyste -> typ 1
+        return (lvl % 2 != 0);
     }
 
-    // Tworzenie klocków w zale¿noœci od poziomu
+    // Tworzenie klocków w zale¿noœci od poziomu – w górnej po³owie ekranu
     void loadLevel(int lvl)
     {
         blocks.clear();
-        backgroundSprites.clear(); // Wyczyœæ poprzednie dekoracje t³a
+        staticSprites.clear();
+        movingSprites.clear();
 
-        // Przyk³adowy "count" i sposób rozmieszczenia
-        // W razie potrzeby mo¿na doprecyzowaæ uk³ady bloków:
+        int count = 0;
+        // Maksymalny Y = po³owa ekranu
+        float maxY = WINDOW_HEIGHT * 0.5f - 100.f;
+
+        // W zale¿noœci od poziomu -> count i rodzaj klocków:
         switch (lvl)
         {
         case 1:
         {
-            int count = 10;
-            float startX = 100.f, startY = 100.f;
-            float offsetX = 100.f, offsetY = 60.f;
+            count = 20; 
             for (int i = 0; i < count; i++)
             {
-                int row = i / 5;
-                int col = i % 5;
-                sf::Vector2f pos(startX + col * offsetX, startY + row * offsetY);
-                blocks.push_back(std::make_unique<IrregularBlock>(pos));
+                float x = 100.f + static_cast<float>(rand() % (WINDOW_WIDTH - 200));
+                float y = 50.f + static_cast<float>(rand() % (int)maxY);
+                blocks.push_back(std::make_unique<IrregularBlock>(sf::Vector2f(x, y)));
             }
         }
         break;
 
         case 2:
         {
-            int count = 15;
-            float startX = 100.f, startY = 80.f;
-            float offsetX = 120.f, offsetY = 50.f;
+            count = 25;
             for (int i = 0; i < count; i++)
             {
-                int row = i / 5;
-                int col = i % 5;
-                sf::Vector2f pos(startX + col * offsetX, startY + row * offsetY);
-                blocks.push_back(std::make_unique<RectBlock>(pos));
+                float x = 50.f + static_cast<float>(rand() % (WINDOW_WIDTH - 100));
+                float y = 50.f + static_cast<float>(rand() % (int)maxY);
+                blocks.push_back(std::make_unique<RectBlock>(sf::Vector2f(x, y)));
             }
         }
         break;
 
-        case 3:
+        default:
+            
         {
-            int count = 10;
+            count = 30 + (lvl * 5); 
             for (int i = 0; i < count; i++)
             {
-                float x = 100.f + static_cast<float>(rand() % 1700);
-                float y = 50.f + static_cast<float>(rand() % 700);
-                float r = 15.f + static_cast<float>(rand() % 25);
-                blocks.push_back(std::make_unique<CircleTarget>(sf::Vector2f(x, y), r));
-            }
-        }
-        break;
+                float x = 50.f + static_cast<float>(rand() % (WINDOW_WIDTH - 100));
+                float y = 50.f + static_cast<float>(rand() % (int)maxY);
 
-        case 4:
-        {
-            int count = 20;
-            for (int i = 0; i < count; i++)
-            {
-                float x = 50.f + static_cast<float>(rand() % 1800);
-                float y = 50.f + static_cast<float>(rand() % 900);
-                blocks.push_back(std::make_unique<BigRectBlock>(sf::Vector2f(x, y)));
-            }
-        }
-        break;
-
-        case 5:
-        {
-            int count = 12;
-            for (int i = 0; i < count; i++)
-            {
-                float x = 50.f + static_cast<float>(rand() % 1800);
-                float y = 80.f + static_cast<float>(rand() % 800);
-                float r = 10.f + static_cast<float>(rand() % 30);
-                blocks.push_back(std::make_unique<CircleTarget>(sf::Vector2f(x, y), r));
-            }
-            // Dekoracje
-            for (int i = 0; i < 5; i++)
-            {
-                sf::Sprite spr = createRandomSprite();
-                float x = static_cast<float>(rand() % 1800 + 50);
-                float y = static_cast<float>(rand() % 900 + 50);
-                spr.setPosition(x, y);
-                backgroundSprites.push_back(spr);
-            }
-        }
-        break;
-
-        case 6:
-        {
-            int count = 16;
-            for (int i = 0; i < count; i++)
-            {
-                float x = 50.f + static_cast<float>(rand() % 1800);
-                float y = 80.f + static_cast<float>(rand() % 800);
-                blocks.push_back(std::make_unique<BigRectBlock>(sf::Vector2f(x, y)));
-            }
-            for (int i = 0; i < 5; i++)
-            {
-                sf::Sprite spr = createRandomSprite();
-                float x = static_cast<float>(rand() % 1800 + 50);
-                float y = static_cast<float>(rand() % 900 + 50);
-                spr.setPosition(x, y);
-                backgroundSprites.push_back(spr);
-            }
-        }
-        break;
-
-        case 7:
-        {
-            // Mo¿na ³¹czyæ ró¿ne typy bloków:
-            int count = 20;
-            for (int i = 0; i < count; i++)
-            {
-                float x = 50.f + static_cast<float>(rand() % 1800);
-                float y = 50.f + static_cast<float>(rand() % 900);
-                // Przyk³ad naprzemiennie:
-                if (i % 2 == 0)
-                    blocks.push_back(std::make_unique<RectBlock>(sf::Vector2f(x, y)));
-                else
-                    blocks.push_back(std::make_unique<IrregularBlock>(sf::Vector2f(x, y)));
-            }
-        }
-        break;
-
-        case 8:
-        {
-            // Same BigRectBlock
-            int count = 25;
-            for (int i = 0; i < count; i++)
-            {
-                float x = 50.f + static_cast<float>(rand() % 1800);
-                float y = 50.f + static_cast<float>(rand() % 900);
-                blocks.push_back(std::make_unique<BigRectBlock>(sf::Vector2f(x, y)));
-            }
-        }
-        break;
-
-        case 9:
-        {
-            // Du¿o kó³ek:
-            int count = 30;
-            for (int i = 0; i < count; i++)
-            {
-                float x = 50.f + static_cast<float>(rand() % 1800);
-                float y = 50.f + static_cast<float>(rand() % 900);
-                float r = 10.f + static_cast<float>(rand() % 40);
-                blocks.push_back(std::make_unique<CircleTarget>(sf::Vector2f(x, y), r));
-            }
-        }
-        break;
-
-        case 10:
-        {
-            // Mix:
-            int count = 30;
-            for (int i = 0; i < count; i++)
-            {
-                float x = 50.f + static_cast<float>(rand() % 1800);
-                float y = 50.f + static_cast<float>(rand() % 900);
-                if (i % 2 == 0)
+        
+                if (i % 3 == 0)
                     blocks.push_back(std::make_unique<CircleTarget>(sf::Vector2f(x, y), 20.f));
-                else
+                else if (i % 3 == 1)
                     blocks.push_back(std::make_unique<BigRectBlock>(sf::Vector2f(x, y)));
-            }
-            // Dekoracje
-            for (int i = 0; i < 8; i++)
-            {
-                sf::Sprite spr = createRandomSprite();
-                float x = static_cast<float>(rand() % 1800 + 50);
-                float y = static_cast<float>(rand() % 900 + 50);
-                spr.setPosition(x, y);
-                backgroundSprites.push_back(spr);
+                else
+                    blocks.push_back(std::make_unique<RectBlock>(sf::Vector2f(x, y)));
             }
         }
         break;
+        }
+
+        // Dekoracje œwiata:
+        if (lvl >= 3)
+        {
+            if (isTypeOneWorld(lvl))
+            {
+                // Typ 1: zielone t³o, psy i drzewa
+                // Dodajmy np. 5 drzew w losowych pozycjach (static)
+                for (int i = 0; i < 5; i++)
+                {
+                    sf::Sprite s(treeTexture);
+                    s.setScale(200.f / treeTexture.getSize().x, 200.f / treeTexture.getSize().y);
+                    s.setPosition(
+                        (float)(rand() % (WINDOW_WIDTH - 200)),
+                        (float)(rand() % (WINDOW_HEIGHT / 2)) + WINDOW_HEIGHT / 2.f
+                    );
+                    staticSprites.push_back(s);
+                }
+                // Dodajmy 3 psy, które siê powoli poruszaj¹
+                for (int i = 0; i < 3; i++)
+                {
+                    MovingSprite ms;
+                    ms.sprite.setTexture(dogTexture);
+                    ms.sprite.setScale(100.f / dogTexture.getSize().x, 100.f / dogTexture.getSize().y);
+                    ms.sprite.setPosition(
+                        (float)(rand() % (WINDOW_WIDTH - 200)),
+                        (float)(rand() % (WINDOW_HEIGHT / 2)) + WINDOW_HEIGHT / 2.f
+                    );
+                    // Powolny ruch w prawo (mo¿na te¿ nadaæ ró¿ne kierunki/ prêdkoœci)
+                    ms.velocity = sf::Vector2f(30.f + rand() % 20, 0.f);
+                    movingSprites.push_back(ms);
+                }
+            }
+            else
+            {
+                // Typ 2: niebieskie t³o, ptaki i chmury
+                // Dodajmy 4 ptaki statycznie
+                for (int i = 0; i < 4; i++)
+                {
+                    sf::Sprite s(birdTexture);
+                    s.setScale(100.f / birdTexture.getSize().x, 100.f / birdTexture.getSize().y);
+                    s.setPosition(
+                        (float)(rand() % (WINDOW_WIDTH - 200)),
+                        (float)(rand() % (WINDOW_HEIGHT / 2)) + WINDOW_HEIGHT / 2.f
+                    );
+                    staticSprites.push_back(s);
+                }
+                // Chmury – niech „przelatuj¹” przez ekran
+                for (int i = 0; i < 4; i++)
+                {
+                    MovingSprite ms;
+                    ms.sprite.setTexture(cloudTexture);
+                    ms.sprite.setScale(500.f / dogTexture.getSize().x, 150.f / dogTexture.getSize().y);
+                    ms.sprite.setPosition(
+                        (float)(rand() % (WINDOW_WIDTH - 200)),
+                        (float)(rand() % (int)(WINDOW_HEIGHT * 0.3f)) // raczej wysoko
+                    );
+                    // Ruch w prawo
+                    ms.velocity = sf::Vector2f(60.f + rand() % 40, 0.f);
+                    movingSprites.push_back(ms);
+                }
+            }
         }
 
         // Reset pi³ki i paletki
@@ -718,16 +665,12 @@ private:
                 pd.score = 0;
                 players.push_back(pd);
 
-                // Po dodaniu nowego gracza – sortuj i zapisz
-                // (lub dopiero po zakoñczeniu gry – wg w³asnych potrzeb)
-                // Tu wystarczy zapisaæ po zakoñczeniu gry. 
-                // Ale posortujmy od razu:
+                // Sort i start
                 std::sort(players.begin(), players.end(),
                     [](const PlayerData& a, const PlayerData& b) {
                         return a.score > b.score;
                     }
                 );
-
                 loadLevel(level);
                 score = 0;
                 currentState = GameState::PLAY;
@@ -798,11 +741,11 @@ private:
                     }
                     else if (currentState == GameState::GAME_OVER)
                     {
-                        currentState = GameState::EXIT; // lub powrót do menu
+                        // Naprawa: wracamy do MENU, zamiast wyjœcia
+                        currentState = GameState::MENU;
                     }
                     else if (currentState == GameState::LEVEL_COMPLETE)
                     {
-                        // Przejœcie do kolejnego poziomu (lub do MENU, jeœli by³ 10)
                         if (level < 10)
                         {
                             ++level;
@@ -811,7 +754,7 @@ private:
                         }
                         else
                         {
-                            // Poziom 10 ukoñczony – wracamy do MENU
+                            // Poziom 10 -> wracamy do MENU
                             currentState = GameState::MENU;
                         }
                     }
@@ -820,7 +763,7 @@ private:
                         currentState = GameState::MENU;
                     }
                 }
-                // Szybki wybór poziomu
+                // szybki wybór poziomu
                 else if (code == sf::Keyboard::Num1) { level = 1;  currentNickname.clear(); currentState = GameState::ENTER_NAME; }
                 else if (code == sf::Keyboard::Num2) { level = 2;  currentNickname.clear(); currentState = GameState::ENTER_NAME; }
                 else if (code == sf::Keyboard::Num3) { level = 3;  currentNickname.clear(); currentState = GameState::ENTER_NAME; }
@@ -854,7 +797,7 @@ private:
             textMenu.setString(
                 "MENU:\n"
                 "[Enter] Start poziom 1\n"
-                "[1..0] - wybierz poziom (0 = 10)\n"
+                "[1..0] - wybierz poziom (0=10)\n"
                 "[T] Tablica wynikow\n"
                 "[F1] Tutorial\n"
                 "[ESC] Wyjscie"
@@ -877,16 +820,29 @@ private:
             ball.update(deltaTime);
             paddle.update(deltaTime);
 
+            // Aktualizacja "ruchomych" dekoracji (psy, chmury)
+            for (auto& ms : movingSprites)
+            {
+                sf::Vector2f pos = ms.sprite.getPosition();
+                pos += ms.velocity * deltaTime;
+                // Jeœli wyjdzie poza ekran w prawo, przesuwamy w lewo
+                if (pos.x > WINDOW_WIDTH + 100.f)
+                {
+                    pos.x = -200.f;
+                }
+                // Ewentualnie, jeœli w lewo, to w prawo:
+                // if (pos.x < -300.f) { pos.x = (float)WINDOW_WIDTH + 50.f; }
+                ms.sprite.setPosition(pos);
+            }
+
             // Dolna krawedz -> przegrana
             if (ball.getPosition().y + ball.getRadius() > (float)WINDOW_HEIGHT)
             {
                 currentState = GameState::GAME_OVER;
-                // Aktualizujemy score u ostatniego gracza
                 if (!players.empty())
                 {
                     players.back().score = score;
                 }
-                // Sort i zapis:
                 std::sort(players.begin(), players.end(),
                     [](const PlayerData& a, const PlayerData& b) {
                         return a.score > b.score;
@@ -921,7 +877,6 @@ private:
                 }
             }
 
-            // Jeœli wszystkie klocki zniszczone:
             if (allDestroyed && !blocks.empty())
             {
                 currentState = GameState::LEVEL_COMPLETE;
@@ -940,13 +895,10 @@ private:
         break;
 
         case GameState::TUTORIAL:
-            // Nic nie robimy, tylko czekamy na F1
             break;
 
         case GameState::SCOREBOARD:
         {
-            // Tablica wynikow jest ju¿ posortowana (przy wczytaniu).
-            // Generujemy string do wyœwietlenia
             std::ostringstream ss;
             ss << "TABLICA WYNIKOW:\n\n";
             for (size_t i = 0; i < players.size(); i++)
@@ -960,17 +912,14 @@ private:
         break;
 
         case GameState::EXIT_CONFIRM:
-        {
-            // Z klawiatury sprawdzane w handleEvents()
-            // T - tak (zapis i exit), N - nie (powrót do PLAY)
-        }
-        break;
+    
+            break;
 
         case GameState::GAME_OVER:
         {
             std::ostringstream ss;
             ss << "GAME OVER!\nWynik: " << score
-                << "\n[ENTER] Wyjdz\n";
+                << "\n[ENTER] Menu\n";
             textGameOver.setString(ss.str());
         }
         break;
@@ -989,7 +938,7 @@ private:
             break;
         }
 
-        // Uaktualnienie Score/Level (tylko w wybranych stanach)
+     
         if (currentState == GameState::PLAY
             || currentState == GameState::LEVEL_COMPLETE
             || currentState == GameState::GAME_OVER
@@ -1007,45 +956,55 @@ private:
 
     void render()
     {
-        // Zanim narysujemy cokolwiek – czyœcimy okno.
         window.clear(sf::Color::Black);
 
-        // Jeœli stan to PLAY (i ewentualnie "zaawansowany" level – rysujemy dynamiczne t³o):
-        bool isAdvancedLevel = (level >= 5);
-        if ((currentState == GameState::PLAY
+        // Rysujemy odpowiednie t³o w zale¿noœci od stanu
+        if (currentState == GameState::PLAY
             || currentState == GameState::LEVEL_COMPLETE
             || currentState == GameState::GAME_OVER)
-            && isAdvancedLevel)
         {
-            // Rysujemy "niebo" + "trawê" (dla przyk³adu)
-            sf::RectangleShape sky(sf::Vector2f((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT / 2.f));
-            sky.setPosition(0.f, 0.f);
-            sky.setFillColor(sf::Color(100, 149, 237));
-            window.draw(sky);
-
-            sf::RectangleShape grass(sf::Vector2f((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT / 2.f));
-            grass.setPosition(0.f, (float)WINDOW_HEIGHT / 2.f);
-            grass.setFillColor(sf::Color(50, 205, 50));
-            window.draw(grass);
-
-            // Rysujemy sprite'y (drzewka, chmury itd.)
-            for (auto& spr : backgroundSprites)
+            // Jeœli lvl >=3, to sprawdzamy, czy typ 1 czy 2
+            if (level >= 3)
             {
-                window.draw(spr);
+                if (isTypeOneWorld(level))
+                {
+                    // Zielone t³o
+                    sf::RectangleShape bg(sf::Vector2f((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT));
+                    bg.setFillColor(sf::Color(34, 139, 34)); // ForestGreen
+                    window.draw(bg);
+                }
+                else
+                {
+                    // Niebieskie t³o
+                    sf::RectangleShape bg(sf::Vector2f((float)WINDOW_WIDTH, (float)WINDOW_HEIGHT));
+                    bg.setFillColor(sf::Color(70, 130, 180)); // SteelBlue
+                    window.draw(bg);
+                }
             }
-        }
-        else if (currentState == GameState::PLAY)
-        {
-            // Ni¿sze levele – zwyk³e czarne t³o + obramowanie
-            background.draw(window);
+            else
+            {
+                // Ni¿sze poziomy – zwyk³e czarne + obramowanie
+                background.draw(window);
+            }
+
+            // Rysujemy obiekty t³a (static + moving)
+            for (auto& s : staticSprites)
+            {
+                window.draw(s);
+            }
+            for (auto& ms : movingSprites)
+            {
+                window.draw(ms.sprite);
+            }
         }
         else
         {
-            // Je¿eli to nie jest PLAY, to wyœwietlamy t³o menu
+            // Stany menu/TUTORIAL/SCOREBOARD/ENTER_NAME/EXIT_CONFIRM
+            // -> rysujemy t³o menu
             window.draw(menuBackgroundSprite);
         }
 
-        // Teraz rysujemy interfejs / obiekty gry zale¿nie od stanu
+        // Rysujemy resztê (tekst, obiekty gry itd.)
         switch (currentState)
         {
         case GameState::MENU:
@@ -1061,6 +1020,7 @@ private:
             window.draw(textScore);
             window.draw(textLevel);
 
+            // Rysujemy pi³kê, paletkê, klocki
             ball.draw(window);
             paddle.draw(window);
             for (auto& target : blocks)
@@ -1069,10 +1029,8 @@ private:
         break;
 
         case GameState::TUTORIAL:
-        {
             window.draw(textTutorial);
-        }
-        break;
+            break;
 
         case GameState::SCOREBOARD:
             window.draw(textScoreboard);
@@ -1081,7 +1039,7 @@ private:
         case GameState::EXIT_CONFIRM:
         {
             sf::Text confirmText("Czy na pewno chcesz wyjsc?\n[T] - Tak, [N] - Nie",
-                font, 40);
+                font, 50);
             confirmText.setFillColor(sf::Color::Red);
             confirmText.setPosition(200.f, 200.f);
             window.draw(confirmText);
