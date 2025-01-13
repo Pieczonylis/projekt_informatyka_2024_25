@@ -33,17 +33,30 @@ private:
     Paddle paddle;
     std::vector<std::unique_ptr<Target>> blocks;
 
-    // T³a:
+    // T³a
     BackgroundManager bgManager;
     sf::Sprite backgroundSprite;
     sf::Texture menuBackgroundTexture;
     sf::Sprite  menuBackgroundSprite;
 
-    // Dekoracje: statyczne i ruchome
+    // T³o scoreboardu
+    sf::Texture scoreBackgroundTexture;
+    sf::Sprite  scoreBackgroundSprite;
+
+    // Animowany sprite w menu
+    sf::Texture menuAnimTexture;
+    sf::Sprite  menuAnimSprite;
+    sf::Vector2f menuAnimVelocity;
+
+    // Tekstury do sprite'ów (chmura, drzewo)
+    sf::Texture cloudTexture;
+    sf::Texture treeTexture;
+
+    // Dekoracje
     std::vector<sf::Sprite> staticSprites;
     std::vector<MovingSprite> movingSprites;
 
-    // Fonty i teksty
+    // Font i teksty
     sf::Font font;
     sf::Text textScore;
     sf::Text textLevel;
@@ -81,7 +94,6 @@ private:
     void render();
     void loadLevel(int lvl);
 
-    // Przyk³adowa metoda z poprzednich buildów
     bool isTypeOneWorld(int lvl) const;
 };
 

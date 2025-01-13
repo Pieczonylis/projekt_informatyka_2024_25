@@ -4,8 +4,8 @@
   entities.cpp
   main.cpp
   Trwa generowanie kodu
-  14 of 673 functions ( 2.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    8 functions had inline decision re-evaluated but remain unchanged
+  152 of 725 functions (21.0%) were compiled, the rest were copied from previous compilation.
+    102 functions were new in current compilation
+    64 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
   test.vcxproj -> C:\Users\jakub\Documents\GitHub\projekt_informatyka_2024_25\x64\Release\test.exe

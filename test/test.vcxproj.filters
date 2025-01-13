@@ -32,41 +32,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="bush.png">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
-    <Image Include="cloud.png">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
-    <Image Include="menu_bg.png">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
-    <Image Include="tree.png">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
-    <Image Include="dog.png">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
-    <Image Include="bird.png">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
-    <Image Include="bg2.png">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
-    <Image Include="bgSpace1.png">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
-    <Image Include="bgSpace2.png">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
-    <Image Include="bgWinter1.png">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
-    <Image Include="bgWinter2.png">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Game.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
@@ -79,5 +44,37 @@
     <ClInclude Include="Scoreboard.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\bg2.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="resources\bgSpace1.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="resources\bgSpace2.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="resources\bgWinter1.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="resources\bgWinter2.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="resources\bird.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="resources\cloud.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="resources\dog.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="resources\menu_bg.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="resources\tree.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
   </ItemGroup>
 </Project>

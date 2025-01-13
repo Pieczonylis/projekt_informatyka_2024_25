@@ -137,23 +137,22 @@
     <ClCompile Include="Scoreboard.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="bg2.png" />
-    <Image Include="bgSpace1.png" />
-    <Image Include="bgSpace2.png" />
-    <Image Include="bgWinter1.png" />
-    <Image Include="bgWinter2.png" />
-    <Image Include="bird.png" />
-    <Image Include="bush.png" />
-    <Image Include="cloud.png" />
-    <Image Include="dog.png" />
-    <Image Include="menu_bg.png" />
-    <Image Include="tree.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Backgrounds.h" />
     <ClInclude Include="Entities.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Scoreboard.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\bg2.png" />
+    <Image Include="resources\bgSpace1.png" />
+    <Image Include="resources\bgSpace2.png" />
+    <Image Include="resources\bgWinter1.png" />
+    <Image Include="resources\bgWinter2.png" />
+    <Image Include="resources\bird.png" />
+    <Image Include="resources\cloud.png" />
+    <Image Include="resources\dog.png" />
+    <Image Include="resources\menu_bg.png" />
+    <Image Include="resources\tree.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

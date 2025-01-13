@@ -19,7 +19,7 @@ void Ball::update(float deltaTime)
     pos += velocity * deltaTime;
     shape.setPosition(pos);
 
-    // Odbicie od lewej/prawej krawêdzi
+    // Odbicie od lewej/prawej
     if (pos.x - shape.getRadius() < 0.f)
     {
         shape.setPosition(shape.getRadius(), pos.y);
@@ -31,7 +31,7 @@ void Ball::update(float deltaTime)
         velocity.x = -velocity.x;
     }
 
-    // Odbicie od górnej krawêdzi
+    // Odbicie od góry
     if (pos.y - shape.getRadius() < 0.f)
     {
         shape.setPosition(pos.x, shape.getRadius());

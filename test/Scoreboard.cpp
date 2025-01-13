@@ -5,7 +5,6 @@
 
 bool saveScoreboard(const std::vector<PlayerData>& players)
 {
-    // "Naprawione" zapisywanie: sprawdzamy, czy plik siê otwiera itd.
     std::ofstream file("scoreboard.txt");
     if (!file.is_open())
     {
@@ -45,12 +44,9 @@ bool loadScoreboard(std::vector<PlayerData>& players)
 
     file.close();
 
-    // Sort – od najwy¿szego wyniku do najni¿szego
+    // sort malej¹co po score
     std::sort(players.begin(), players.end(),
-        [](const PlayerData& a, const PlayerData& b)
-        {
-            return a.score > b.score;
-        }
+        [](const PlayerData& a, const PlayerData& b) { return a.score > b.score; }
     );
 
     return true;

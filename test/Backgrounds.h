@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 /**
- * Struktura do „ruchomych” dekoracji (psy, chmury, itp.).
+ * Struktura do „ruchomych” dekoracji t³a (psy, chmury, itp.)
  */
 struct MovingSprite
 {
@@ -13,13 +13,7 @@ struct MovingSprite
 };
 
 /**
- * Klasa ³aduj¹ca i zwracaj¹ca ró¿ne t³a w zale¿noœci od poziomu.
- * Dodaliœmy:
- *  - kosmos (1–2)
- *  - "normalne" (3–4)
- *  - zimowe (5–6)
- *  - leœne (7–8)
- *  - ewentualnie 9–10 – zdefiniujmy jako leœne2
+ * Klasa ³aduj¹ca i zwracaj¹ca ró¿ne t³a w zale¿noœci od numeru poziomu.
  */
 class BackgroundManager
 {

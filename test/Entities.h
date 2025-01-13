@@ -3,8 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 
-static const unsigned WINDOW_WIDTH = 1920;
-static const unsigned WINDOW_HEIGHT = 1080;
+// Zmniejszona rozdzielczoœæ
+static const unsigned WINDOW_WIDTH = 1280;
+static const unsigned WINDOW_HEIGHT = 720;
 
 /**
  * Klasa bazowa dla obiektów, które aktualizuj¹ i rysuj¹ siê na ekranie.
@@ -69,7 +70,7 @@ public:
 };
 
 // ---------------------------
-// Konkrety - ró¿ne kszta³ty
+// IrregularBlock (nieregularny kszta³t 5-punktowy)
 // ---------------------------
 class IrregularBlock : public Target
 {
@@ -82,6 +83,9 @@ public:
     sf::FloatRect getGlobalBounds() const override;
 };
 
+// ---------------------------
+// Prostok¹tny klocek
+// ---------------------------
 class RectBlock : public Target
 {
 private:
@@ -93,6 +97,9 @@ public:
     sf::FloatRect getGlobalBounds() const override;
 };
 
+// ---------------------------
+// Kó³ko
+// ---------------------------
 class CircleTarget : public Target
 {
 private:
@@ -104,6 +111,9 @@ public:
     sf::FloatRect getGlobalBounds() const override;
 };
 
+// ---------------------------
+// Wiêkszy prostok¹t
+// ---------------------------
 class BigRectBlock : public Target
 {
 private:
