@@ -137,6 +137,11 @@
     <ClCompile Include="Scoreboard.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="bg2.png" />
+    <Image Include="bgSpace1.png" />
+    <Image Include="bgSpace2.png" />
+    <Image Include="bgWinter1.png" />
+    <Image Include="bgWinter2.png" />
     <Image Include="bird.png" />
     <Image Include="bush.png" />
     <Image Include="cloud.png" />

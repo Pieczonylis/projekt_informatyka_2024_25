@@ -1,8 +1,8 @@
 #include "Game.h"
 #include <iostream>
 #include <sstream>
-#include <cstdlib> // rand
 #include <algorithm> // sort
+#include <cstdlib>   // rand
 
 Game::Game()
     : window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Projekt ARiSS 2024/2025"),
@@ -19,7 +19,7 @@ Game::Game()
         std::cerr << "Nie udalo sie zaladowac czcionki!\n";
     }
 
-    // T³o menu (np. "Resources/menu_bg.png")
+    // T³o menu
     if (!menuBackgroundTexture.loadFromFile("Resources/menu_bg.png"))
     {
         std::cerr << "Blad wczytywania Resources/menu_bg.png\n";
@@ -87,9 +87,8 @@ void Game::run()
 
 bool Game::isTypeOneWorld(int lvl) const
 {
-    // Przyk³ad logiczny, jeœli potrzebny
-    if (lvl < 3) return false;
-    return (lvl % 2 != 0);
+    // Przyk³adowa logika (u¿yta w poprzednich buildach) – tu niekoniecznie
+    return (lvl >= 3 && (lvl % 2 != 0));
 }
 
 void Game::handleEnterNameEvent(const sf::Event& event)
@@ -107,37 +106,33 @@ void Game::handleEnterNameEvent(const sf::Event& event)
         {
         case sf::Keyboard::Enter:
         {
-            // Dodaj gracza
             PlayerData pd;
             pd.nick = currentNickname;
             pd.score = 0;
             players.push_back(pd);
 
-            // Sort
+            // Sortuj i ³aduj planszê
             std::sort(players.begin(), players.end(),
-                [](const PlayerData& a, const PlayerData& b) {
+                [](const PlayerData& a, const PlayerData& b)
+                {
                     return a.score > b.score;
                 }
             );
-
             loadLevel(level);
             score = 0;
             currentState = GameState::PLAY;
         }
         break;
-
         case sf::Keyboard::BackSpace:
         {
             if (!currentNickname.empty()) currentNickname.pop_back();
         }
         break;
-
         case sf::Keyboard::Escape:
         {
             currentState = GameState::MENU;
         }
         break;
-
         default:
             break;
         }
@@ -191,6 +186,7 @@ void Game::handleEvents()
                     currentState = GameState::ENTER_NAME;
                     break;
                 case GameState::GAME_OVER:
+                    // Wróæ do menu
                     currentState = GameState::MENU;
                     break;
                 case GameState::LEVEL_COMPLETE:
@@ -225,7 +221,6 @@ void Game::handleEvents()
             case sf::Keyboard::Num9: { level = 9;  currentNickname.clear(); currentState = GameState::ENTER_NAME; } break;
             case sf::Keyboard::Num0: { level = 10; currentNickname.clear(); currentState = GameState::ENTER_NAME; } break;
 
-                // zapisywanie / wczytanie scoreboard
             case sf::Keyboard::S:
                 saveScoreboard(players);
                 break;
@@ -238,7 +233,7 @@ void Game::handleEvents()
             }
         }
 
-        // obs³uga stanu EXIT_CONFIRM
+        // EXIT_CONFIRM
         if (currentState == GameState::EXIT_CONFIRM)
         {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
@@ -247,7 +242,6 @@ void Game::handleEvents()
             }
             else if (sf::Keyboard::isKeyPressed(sf::Keyboard::N))
             {
-                // wracamy do MENU (albo do PLAY – mo¿na wybraæ)
                 currentState = GameState::MENU;
             }
         }
@@ -286,7 +280,7 @@ void Game::update(float deltaTime)
         ball.update(deltaTime);
         paddle.update(deltaTime);
 
-        // Ruchome dekoracje (psy, chmury itd.)
+        // Ruchome dekoracje
         for (auto& ms : movingSprites)
         {
             sf::Vector2f pos = ms.sprite.getPosition();
@@ -312,7 +306,7 @@ void Game::update(float deltaTime)
                     return a.score > b.score;
                 }
             );
-            saveScoreboard(players);
+            saveScoreboard(players); // tu zapis
             break;
         }
 
@@ -323,7 +317,7 @@ void Game::update(float deltaTime)
             vel.y = -std::abs(vel.y);
         }
 
-        // SprawdŸ kolizje z klockami
+        // Kolizje z klockami
         bool allDestroyed = true;
         for (auto& target : blocks)
         {
@@ -340,7 +334,6 @@ void Game::update(float deltaTime)
                 }
             }
         }
-        // Jeœli wszystkie klocki zniszczone:
         if (allDestroyed && !blocks.empty())
         {
             currentState = GameState::LEVEL_COMPLETE;
@@ -354,13 +347,13 @@ void Game::update(float deltaTime)
                     return a.score > b.score;
                 }
             );
-            saveScoreboard(players);
+            saveScoreboard(players); // tu zapis
         }
     }
     break;
 
     case GameState::TUTORIAL:
-        // czekamy na F1
+        // nic nie robimy
         break;
 
     case GameState::SCOREBOARD:
@@ -378,7 +371,7 @@ void Game::update(float deltaTime)
     break;
 
     case GameState::EXIT_CONFIRM:
-        // obs³ugiwane w handleEvents
+        // obs³uga w handleEvents
         break;
 
     case GameState::GAME_OVER:
@@ -404,7 +397,7 @@ void Game::update(float deltaTime)
         break;
     }
 
-    // Uaktualnienie Score/Level w niektórych stanach
+    // Uaktualnienie Score/Level
     if (currentState == GameState::PLAY
         || currentState == GameState::LEVEL_COMPLETE
         || currentState == GameState::GAME_OVER
@@ -426,14 +419,14 @@ void Game::loadLevel(int lvl)
     staticSprites.clear();
     movingSprites.clear();
 
-    // Ustawiamy backgroundSprite (obrazek z managera).
+    // Ustawiamy backgroundSprite
     sf::Texture& currentBg = bgManager.getBackgroundTexture(lvl);
     backgroundSprite.setTexture(currentBg);
     float sX = (float)WINDOW_WIDTH / currentBg.getSize().x;
     float sY = (float)WINDOW_HEIGHT / currentBg.getSize().y;
     backgroundSprite.setScale(sX, sY);
 
-    // Przyk³adowy generator klocków
+    // Przyk³adowy generator klocków:
     int count = 0;
     float maxY = WINDOW_HEIGHT * 0.5f - 100.f;
     switch (lvl)
@@ -480,8 +473,30 @@ void Game::loadLevel(int lvl)
     break;
     }
 
-    // (Mo¿esz dodaæ dekoracje – psy, chmury, itp. – jeœli chcesz).
-    // ...
+    // Dodajmy np. sprite'y dekoracyjne (jak we wczeœniejszych buildach),
+    // np. psy, chmury itp. – wystarczy wczytaæ dodatkowe tekstury
+    // (lub ju¿ wczytane w innym miejscu) i dodaæ do movingSprites / staticSprites.
+    // PRZYK£ADOWO:
+
+    // PRZYK£AD: statyczne drzewo
+    /*
+    sf::Texture treeTex;
+    treeTex.loadFromFile("Resources/tree.png"); // musisz je dodaæ do pola klasy, by nie zniknê³o
+    sf::Sprite s(treeTex);
+    s.setPosition(100, 600);
+    staticSprites.push_back(s);
+    */
+
+    // PRZYK£AD: chmura w movingSprites
+    /*
+    static sf::Texture cloudTex; // static, by nie tracic pamieci
+    cloudTex.loadFromFile("Resources/cloud.png");
+    MovingSprite ms;
+    ms.sprite.setTexture(cloudTex);
+    ms.sprite.setPosition(300.f, 150.f);
+    ms.velocity = sf::Vector2f(30.f, 0.f);
+    movingSprites.push_back(ms);
+    */
 
     // Reset pi³ki i paletki
     ball.setPosition(WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 2.f);
@@ -493,14 +508,15 @@ void Game::render()
 {
     window.clear(sf::Color::Black);
 
-    // Rysujemy t³o w zale¿noœci od stanu
     switch (currentState)
     {
     case GameState::PLAY:
     case GameState::LEVEL_COMPLETE:
     case GameState::GAME_OVER:
+        // Rysujemy docelowe t³o (obrazek)
         window.draw(backgroundSprite);
-        // Dekoracje (static + moving)
+
+        // Dekoracje
         for (auto& s : staticSprites)
             window.draw(s);
         for (auto& ms : movingSprites)
@@ -508,11 +524,11 @@ void Game::render()
         break;
 
     default:
+        // menu/tute/scooreboard/enter_name
         window.draw(menuBackgroundSprite);
         break;
     }
 
-    // Rysujemy resztê
     switch (currentState)
     {
     case GameState::MENU:
@@ -528,7 +544,6 @@ void Game::render()
         window.draw(textScore);
         window.draw(textLevel);
 
-        // Obiekty gry
         ball.draw(window);
         paddle.draw(window);
         for (auto& target : blocks)

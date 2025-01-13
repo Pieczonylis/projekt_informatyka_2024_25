@@ -5,6 +5,7 @@
 
 bool saveScoreboard(const std::vector<PlayerData>& players)
 {
+    // "Naprawione" zapisywanie: sprawdzamy, czy plik siê otwiera itd.
     std::ofstream file("scoreboard.txt");
     if (!file.is_open())
     {

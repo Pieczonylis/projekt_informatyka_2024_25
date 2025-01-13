@@ -1,13 +1,10 @@
-#pragma once
 #ifndef BACKGROUNDS_H
 #define BACKGROUNDS_H
 
 #include <SFML/Graphics.hpp>
-#include <vector>
-#include <string>
 
 /**
- * Prosta struktura do „ruchomych” dekoracji t³a (psy, chmury, itp.)
+ * Struktura do „ruchomych” dekoracji (psy, chmury, itp.).
  */
 struct MovingSprite
 {
@@ -16,19 +13,25 @@ struct MovingSprite
 };
 
 /**
- * Klasa ³aduj¹ca i zwracaj¹ca ró¿ne t³a w zale¿noœci od numeru poziomu.
- * Dodajemy te¿ "kosmiczne" t³a dla poziomów 1 i 2.
+ * Klasa ³aduj¹ca i zwracaj¹ca ró¿ne t³a w zale¿noœci od poziomu.
+ * Dodaliœmy:
+ *  - kosmos (1–2)
+ *  - "normalne" (3–4)
+ *  - zimowe (5–6)
+ *  - leœne (7–8)
+ *  - ewentualnie 9–10 – zdefiniujmy jako leœne2
  */
 class BackgroundManager
 {
 private:
-    // Tekstury do ró¿nych poziomów:
-    sf::Texture bgSpace1;     // kosmos np. dla poziomu 1
-    sf::Texture bgSpace2;     // kosmos np. dla poziomu 2
-    sf::Texture bg2Texture;   // np. dla poziomów 3-4
-    sf::Texture bgWinter1;    // 5-6
-    sf::Texture bgWinter2;    // 7-8
-    // itd. – mo¿na dodaæ kolejne, jeœli potrzebne
+    sf::Texture bgSpace1;
+    sf::Texture bgSpace2;
+    sf::Texture bgNormal1;
+    sf::Texture bgNormal2;
+    sf::Texture bgWinter1;
+    sf::Texture bgWinter2;
+    sf::Texture bgForest1;
+    sf::Texture bgForest2;
 
 public:
     BackgroundManager();

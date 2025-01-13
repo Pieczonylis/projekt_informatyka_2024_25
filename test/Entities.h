@@ -25,6 +25,7 @@ class Ball : public GameObject
 private:
     sf::CircleShape shape;
     sf::Vector2f velocity;
+
 public:
     Ball(float radius = 12.f);
 

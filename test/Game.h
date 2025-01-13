@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
+#include <memory>
+
 #include "Scoreboard.h"
 #include "Entities.h"
 #include "Backgrounds.h"
@@ -33,7 +35,7 @@ private:
 
     // T³a:
     BackgroundManager bgManager;
-    sf::Sprite backgroundSprite; // G³ówne t³o (poziom)
+    sf::Sprite backgroundSprite;
     sf::Texture menuBackgroundTexture;
     sf::Sprite  menuBackgroundSprite;
 
@@ -79,7 +81,7 @@ private:
     void render();
     void loadLevel(int lvl);
 
-    // Inne pomoce
+    // Przyk³adowa metoda z poprzednich buildów
     bool isTypeOneWorld(int lvl) const;
 };
 
