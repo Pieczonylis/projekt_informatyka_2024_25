@@ -130,7 +130,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Backgrounds.cpp" />
+    <ClCompile Include="entities.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Scoreboard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bird.png" />
@@ -139,6 +143,12 @@
     <Image Include="dog.png" />
     <Image Include="menu_bg.png" />
     <Image Include="tree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Backgrounds.h" />
+    <ClInclude Include="Entities.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Scoreboard.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
