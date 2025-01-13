@@ -40,7 +40,7 @@ Game::Game()
     float sY2 = (float)WINDOW_HEIGHT / scoreBackgroundTexture.getSize().y;
     scoreBackgroundSprite.setScale(sX2, sY2);
 
-    // Animowany sprite w menu (ptok)
+    // Animowany sprite w menu (ptak)
     if (!menuAnimTexture.loadFromFile("Resources/bird.png"))
     {
         std::cerr << "Blad wczytywania menu_anim.png\n";
@@ -65,9 +65,8 @@ Game::Game()
             txt.setOutlineColor(sf::Color::Black);
             txt.setOutlineThickness(2.f);
         };
-    
-    //teksty do poziomu - oddzielic dla klarownosci
-        setupText(textScore, 36, sf::Color::Green, 10.f, 10.f);
+
+    setupText(textScore, 36, sf::Color::Green, 10.f, 10.f);
     setupText(textLevel, 36, sf::Color::Cyan, 10.f, 50.f);
 
     // Tutorial
@@ -84,13 +83,12 @@ Game::Game()
         " - Unikaj spadniecia pilki\n"
         "\nNacisnij F1, by wrocic."
     );
-   
-    //reszta tekstów
+
     setupText(textMenu, 50, sf::Color::Cyan, 400.f, 150.f);
     setupText(textGameOver, 60, sf::Color::Red, 150.f, 250.f);
     setupText(textLevelComplete, 60, sf::Color::Green, 150.f, 250.f);
-    setupText(textScoreboard, 32, sf::Color::White, 100.f, 100.f);
-    setupText(textEnterName, 50, sf::Color::Yellow, 100.f, 100.f);
+    setupText(textScoreboard, 32, sf::Color::White, 550.f, 150.f);
+    setupText(textEnterName, 50, sf::Color::Yellow, 300.f, 190.f);
 
     loadScoreboard(players);
 }
@@ -111,9 +109,9 @@ bool Game::isTypeOneWorld(int lvl) const
     return (lvl >= 3 && lvl % 2 != 0);
 }
 
-/**
- * Obs³uga wpisywania nicku
- */
+
+ //Obs³uga wpisywania nicku
+ 
 void Game::handleEnterNameEvent(const sf::Event& event)
 {
     if (event.type == sf::Event::TextEntered)
@@ -310,116 +308,113 @@ void Game::handleEvents()
             }
             break;
 
-			case sf::Keyboard::Num4:
-			{
-				if (!nicknameEntered)
-				{
-					level = 4;
-					currentNickname.clear();
-					currentState = GameState::ENTER_NAME;
-				}
-				else
-				{
-					level = 4;
-					loadLevel(level);
-					score = 0;
-					currentState = GameState::PLAY;
-				}
-			}
+            case sf::Keyboard::Num4:
+            {
+                if (!nicknameEntered)
+                {
+                    level = 4;
+                    currentNickname.clear();
+                    currentState = GameState::ENTER_NAME;
+                }
+                else
+                {
+                    level = 4;
+                    loadLevel(level);
+                    score = 0;
+                    currentState = GameState::PLAY;
+                }
+            }
+            break;
 
-			break;
+            case sf::Keyboard::Num5:
+            {
+                if (!nicknameEntered)
+                {
+                    level = 5;
+                    currentNickname.clear();
+                    currentState = GameState::ENTER_NAME;
+                }
+                else
+                {
+                    level = 5;
+                    loadLevel(level);
+                    score = 0;
+                    currentState = GameState::PLAY;
+                }
+            }
+            break;
 
-			case sf::Keyboard::Num5:
-			{
-				if (!nicknameEntered)
-				{
-					level = 5;
-					currentNickname.clear();
-					currentState = GameState::ENTER_NAME;
-				}
-				else
-				{
-					level = 5;
-					loadLevel(level);
-					score = 0;
-					currentState = GameState::PLAY;
-				}
-               
-			}
-			break;
+            case sf::Keyboard::Num6:
+            {
+                if (!nicknameEntered)
+                {
+                    level = 6;
+                    currentNickname.clear();
+                    currentState = GameState::ENTER_NAME;
+                }
+                else
+                {
+                    level = 6;
+                    loadLevel(level);
+                    score = 0;
+                    currentState = GameState::PLAY;
+                }
+            }
+            break;
 
-			case sf::Keyboard::Num6:
-			{
-				if (!nicknameEntered)
-				{
-					level = 6;
-					currentNickname.clear();
-					currentState = GameState::ENTER_NAME;
-				}
-				else
-				{
-					level = 6;
-					loadLevel(level);
-					score = 0;
-					currentState = GameState::PLAY;
-				}
-			}
-			break;
+            case sf::Keyboard::Num7:
+            {
+                if (!nicknameEntered)
+                {
+                    level = 7;
+                    currentNickname.clear();
+                    currentState = GameState::ENTER_NAME;
+                }
+                else
+                {
+                    level = 7;
+                    loadLevel(level);
+                    score = 0;
+                    currentState = GameState::PLAY;
+                }
+            }
+            break;
 
-			case sf::Keyboard::Num7:
-			{
-				if (!nicknameEntered)
-				{
-					level = 7;
-					currentNickname.clear();
-					currentState = GameState::ENTER_NAME;
-				}
-				else
-				{
-					level = 7;
-					loadLevel(level);
-					score = 0;
-					currentState = GameState::PLAY;
-				}
-			}
-			break;
+            case sf::Keyboard::Num8:
+            {
+                if (!nicknameEntered)
+                {
+                    level = 8;
+                    currentNickname.clear();
+                    currentState = GameState::ENTER_NAME;
+                }
+                else
+                {
+                    level = 8;
+                    loadLevel(level);
+                    score = 0;
+                    currentState = GameState::PLAY;
+                }
+            }
+            break;
 
-			case sf::Keyboard::Num8:
-			{
-				if (!nicknameEntered)
-				{
-					level = 8;
-					currentNickname.clear();
-					currentState = GameState::ENTER_NAME;
-				}
-				else
-				{
-					level = 8;
-					loadLevel(level);
-					score = 0;
-					currentState = GameState::PLAY;
-				}
-			}
-			break;
-                
-			case sf::Keyboard::Num9:
-			{
-				if (!nicknameEntered)
-				{
-					level = 9;
-					currentNickname.clear();
-					currentState = GameState::ENTER_NAME;
-				}
-				else
-				{
-					level = 9;
-					loadLevel(level);
-					score = 0;
-					currentState = GameState::PLAY;
-				}
-			}
-			break;
-
+            case sf::Keyboard::Num9:
+            {
+                if (!nicknameEntered)
+                {
+                    level = 9;
+                    currentNickname.clear();
+                    currentState = GameState::ENTER_NAME;
+                }
+                else
+                {
+                    level = 9;
+                    loadLevel(level);
+                    score = 0;
+                    currentState = GameState::PLAY;
+                }
+            }
+            break;
 
             case sf::Keyboard::Num0:
             {
@@ -470,9 +465,9 @@ void Game::update(float deltaTime)
 {
     switch (currentState)
     {
-        //menu stuff + berb w tle
     case GameState::MENU:
     {
+        // Animacja ptaka w menu
         sf::Vector2f pos = menuAnimSprite.getPosition();
         pos += menuAnimVelocity * deltaTime;
 
@@ -514,7 +509,7 @@ void Game::update(float deltaTime)
         ball.update(deltaTime);
         paddle.update(deltaTime);
 
-        // Ruchome sprity
+        // Ruchome sprite'y
         for (auto& ms : movingSprites)
         {
             sf::Vector2f pos = ms.sprite.getPosition();
@@ -526,7 +521,7 @@ void Game::update(float deltaTime)
             ms.sprite.setPosition(pos);
         }
 
-        // Przegrana (pi³ka spad³a)
+        // Przegrana
         if (ball.getPosition().y + ball.getRadius() > (float)WINDOW_HEIGHT)
         {
             currentState = GameState::GAME_OVER;
@@ -583,6 +578,7 @@ void Game::update(float deltaTime)
     break;
 
     case GameState::TUTORIAL:
+        // Pokazujemy textTutorial
         break;
 
     case GameState::SCOREBOARD:
@@ -600,7 +596,7 @@ void Game::update(float deltaTime)
     break;
 
     case GameState::EXIT_CONFIRM:
-        // obs³ugiwane w handleEvents
+        // obs³uga w handleEvents
         break;
 
     case GameState::GAME_OVER:
@@ -654,6 +650,7 @@ void Game::loadLevel(int lvl)
     float sY = (float)WINDOW_HEIGHT / currentBg.getSize().y;
     backgroundSprite.setScale(sX, sY);
 
+    // Liczba klocków
     int count = 10 + (lvl * 3);
     float maxY = WINDOW_HEIGHT * 0.5f - 50.f;
     for (int i = 0; i < count; i++)
@@ -661,15 +658,29 @@ void Game::loadLevel(int lvl)
         float x = 50.f + static_cast<float>(rand() % (WINDOW_WIDTH - 100));
         float y = 50.f + static_cast<float>(rand() % (int)maxY);
 
-        if (i % 3 == 0)
-            blocks.push_back(std::make_unique<CircleTarget>(sf::Vector2f(x, y), 20.f));
-        else if (i % 3 == 1)
-            blocks.push_back(std::make_unique<BigRectBlock>(sf::Vector2f(x, y)));
+        // Dla poziomów 1 i 5 -> IrregularBlock
+        // W pozosta³ych -> CircleTarget
+        if (lvl == 1 || lvl == 5)
+        {
+            if (i % 3 == 0)
+                blocks.push_back(std::make_unique<IrregularBlock>(sf::Vector2f(x, y)));
+            else if (i % 3 == 1)
+                blocks.push_back(std::make_unique<BigRectBlock>(sf::Vector2f(x, y)));
+            else
+                blocks.push_back(std::make_unique<RectBlock>(sf::Vector2f(x, y)));
+        }
         else
-            blocks.push_back(std::make_unique<RectBlock>(sf::Vector2f(x, y)));
+        {
+            if (i % 3 == 0)
+                blocks.push_back(std::make_unique<CircleTarget>(sf::Vector2f(x, y), 20.f));
+            else if (i % 3 == 1)
+                blocks.push_back(std::make_unique<BigRectBlock>(sf::Vector2f(x, y)));
+            else
+                blocks.push_back(std::make_unique<RectBlock>(sf::Vector2f(x, y)));
+        }
     }
 
-    // ruchomy sprite (chmura)
+    // Ruchomy sprite (chmura)
     {
         MovingSprite ms;
         ms.sprite.setTexture(cloudTexture);
@@ -681,9 +692,10 @@ void Game::loadLevel(int lvl)
         movingSprites.push_back(ms);
     }
 
-    // nieruchomy sprite (drzewo)
+    // Nieruchomy sprite (drzewo)
     {
         sf::Sprite tree(treeTexture);
+        // Zmiana skali w razie potrzeby
         tree.setScale(1.f, 1.f);
         float px = static_cast<float>(rand() % (WINDOW_WIDTH - 200));
         float py = WINDOW_HEIGHT / 2.f + static_cast<float>(rand() % 200);
@@ -759,7 +771,7 @@ void Game::render()
         sf::Text confirmText("Czy na pewno chcesz wyjsc?\n[T] - Tak, [N] - Nie",
             font, 50);
         confirmText.setFillColor(sf::Color::Red);
-        confirmText.setPosition(500.f, 270.f);
+        confirmText.setPosition(400.f, 250.f);
         confirmText.setOutlineColor(sf::Color::Black);
         confirmText.setOutlineThickness(2.f);
 

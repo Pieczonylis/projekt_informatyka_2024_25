@@ -7,6 +7,14 @@
       "RelativeMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|solutionrelative:test\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|solutionrelative:test\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\Scoreboard.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|solutionrelative:test\\Scoreboard.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\Backgrounds.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|solutionrelative:test\\Backgrounds.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -35,14 +43,6 @@
       "RelativeMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|solutionrelative:test\\Entities.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|solutionrelative:test\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\Scoreboard.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|solutionrelative:test\\Scoreboard.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\resources\\cloud.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
       "RelativeMoniker": "D:0:0:{2993D334-D497-4D19-83F0-CB4687D357FE}|test\\test.vcxproj|solutionrelative:test\\resources\\cloud.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
     }
@@ -69,7 +69,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "bg2.png",
               "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\resources\\bg2.png",
               "RelativeDocumentMoniker": "test\\resources\\bg2.png",
@@ -80,7 +80,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Backgrounds.cpp",
               "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\Backgrounds.cpp",
               "RelativeDocumentMoniker": "test\\Backgrounds.cpp",
@@ -88,24 +88,24 @@
               "RelativeToolTip": "test\\Backgrounds.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-13T17:33:54.879Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T17:33:54.879Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 2,
               "Title": "Scoreboard.cpp",
               "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\Scoreboard.cpp",
               "RelativeDocumentMoniker": "test\\Scoreboard.cpp",
               "ToolTip": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\Scoreboard.cpp",
               "RelativeToolTip": "test\\Scoreboard.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACYAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-13T17:33:28.909Z"
+              "WhenOpened": "2025-01-13T17:33:28.909Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Backgrounds.h",
               "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\Backgrounds.h",
               "RelativeDocumentMoniker": "test\\Backgrounds.h",
@@ -113,12 +113,11 @@
               "RelativeToolTip": "test\\Backgrounds.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-13T17:32:54.978Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T17:32:54.978Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Game.h",
               "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\Game.h",
               "RelativeDocumentMoniker": "test\\Game.h",
@@ -136,14 +135,14 @@
               "RelativeDocumentMoniker": "test\\Game.cpp",
               "ToolTip": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\Game.cpp*",
               "RelativeToolTip": "test\\Game.cpp*",
-              "ViewState": "AgIAAOICAAAAAAAAAADwv+8CAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAFkAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-13T17:34:14.874Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\main.cpp",
               "RelativeDocumentMoniker": "test\\main.cpp",
@@ -151,11 +150,12 @@
               "RelativeToolTip": "test\\main.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-12T19:33:56.522Z"
+              "WhenOpened": "2025-01-12T19:33:56.522Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Scoreboard.h",
               "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\Scoreboard.h",
               "RelativeDocumentMoniker": "test\\Scoreboard.h",
@@ -167,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "entities.cpp",
               "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\entities.cpp",
               "RelativeDocumentMoniker": "test\\entities.cpp",
@@ -175,12 +175,11 @@
               "RelativeToolTip": "test\\entities.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-13T17:33:10.473Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T17:33:10.473Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Entities.h",
               "DocumentMoniker": "C:\\Users\\jakub\\Documents\\GitHub\\projekt_informatyka_2024_25\\test\\Entities.h",
               "RelativeDocumentMoniker": "test\\Entities.h",
