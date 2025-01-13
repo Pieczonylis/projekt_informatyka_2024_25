@@ -10,8 +10,7 @@ BackgroundManager::BackgroundManager()
 
     if (!bgNormal1.loadFromFile("Resources/bg2.png"))
         std::cerr << "Blad ladowania bg2.png\n";
-    if (!bgNormal2.loadFromFile("Resources/bg2b.png"))
-        std::cerr << "Blad ladowania bg2b.png\n";
+ 
 
     if (!bgWinter1.loadFromFile("Resources/bgWinter1.png"))
         std::cerr << "Blad ladowania bgWinter1.png\n";
@@ -31,7 +30,7 @@ sf::Texture& BackgroundManager::getBackgroundTexture(int level)
     case 1:  return bgSpace1;
     case 2:  return bgSpace2;
     case 3:  return bgNormal1;
-    case 4:  return bgNormal2;
+    case 4:  return bgNormal1;
     case 5:  return bgWinter1;
     case 6:  return bgWinter2;
     case 7:  return bgForest1;

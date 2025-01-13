@@ -2,14 +2,13 @@
 #define ENTITIES_H
 
 #include <SFML/Graphics.hpp>
-
-// Zmniejszona rozdzielczoœæ
+//nie wiem dlaczego tu jest to, ale niech zostanie
 static const unsigned WINDOW_WIDTH = 1280;
 static const unsigned WINDOW_HEIGHT = 720;
 
-/**
- * Klasa bazowa dla obiektów, które aktualizuj¹ i rysuj¹ siê na ekranie.
- */
+
+// Klasa bazowa dla obiektów, które aktualizuj¹ i rysuj¹ siê na ekranie.
+
 class GameObject
 {
 public:
@@ -18,9 +17,9 @@ public:
     virtual void draw(sf::RenderWindow& window) = 0;
 };
 
-// ---------------------------
+
 // Klasa pi³ki
-// ---------------------------
+
 class Ball : public GameObject
 {
 private:
@@ -28,7 +27,7 @@ private:
     sf::Vector2f velocity;
 
 public:
-    Ball(float radius = 12.f);
+    Ball(float radius = 15.f);
 
     void update(float deltaTime) override;
     void draw(sf::RenderWindow& window) override;
@@ -40,9 +39,8 @@ public:
     float getRadius() const;
 };
 
-// ---------------------------
+
 // Klasa paletki
-// ---------------------------
 class Paddle : public GameObject
 {
 private:
@@ -56,9 +54,7 @@ public:
     sf::FloatRect getGlobalBounds() const;
 };
 
-// ---------------------------
-// Bazowa klasa celu
-// ---------------------------
+// Celeklasa 1
 class Target : public GameObject
 {
 protected:
@@ -69,9 +65,7 @@ public:
     void destroy() { destroyed = true; }
 };
 
-// ---------------------------
-// IrregularBlock (nieregularny kszta³t 5-punktowy)
-// ---------------------------
+// IrregularBlock (nieregularny kszta³t)
 class IrregularBlock : public Target
 {
 private:
@@ -83,9 +77,7 @@ public:
     sf::FloatRect getGlobalBounds() const override;
 };
 
-// ---------------------------
 // Prostok¹tny klocek
-// ---------------------------
 class RectBlock : public Target
 {
 private:
@@ -97,9 +89,7 @@ public:
     sf::FloatRect getGlobalBounds() const override;
 };
 
-// ---------------------------
 // Kó³ko
-// ---------------------------
 class CircleTarget : public Target
 {
 private:
@@ -111,9 +101,7 @@ public:
     sf::FloatRect getGlobalBounds() const override;
 };
 
-// ---------------------------
 // Wiêkszy prostok¹t
-// ---------------------------
 class BigRectBlock : public Target
 {
 private:
@@ -125,4 +113,4 @@ public:
     sf::FloatRect getGlobalBounds() const override;
 };
 
-#endif // ENTITIES_H
+#endif 

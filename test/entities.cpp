@@ -1,25 +1,24 @@
 #include "Entities.h"
-#include <cmath> // std::abs
+#include <cmath>
 
-// ---------------------------
-// Ball
-// ---------------------------
+// PI£KA STUFF
 Ball::Ball(float radius)
 {
     shape.setRadius(radius);
-    shape.setFillColor(sf::Color::Yellow);
+    shape.setOutlineThickness(2);
+    shape.setOutlineColor(sf::Color::White);
+    shape.setFillColor(sf::Color::Black);
     shape.setOrigin(radius, radius);
     shape.setPosition(WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 2.f);
-    velocity = sf::Vector2f(300.f, 300.f);
+    velocity = sf::Vector2f(200.f, 200.f);
 }
-
+//odbijajki
 void Ball::update(float deltaTime)
 {
     sf::Vector2f pos = shape.getPosition();
     pos += velocity * deltaTime;
     shape.setPosition(pos);
 
-    // Odbicie od lewej/prawej
     if (pos.x - shape.getRadius() < 0.f)
     {
         shape.setPosition(shape.getRadius(), pos.y);
@@ -31,7 +30,6 @@ void Ball::update(float deltaTime)
         velocity.x = -velocity.x;
     }
 
-    // Odbicie od góry
     if (pos.y - shape.getRadius() < 0.f)
     {
         shape.setPosition(pos.x, shape.getRadius());

@@ -13,4 +13,4 @@ struct PlayerData
 bool saveScoreboard(const std::vector<PlayerData>& players);
 bool loadScoreboard(std::vector<PlayerData>& players);
 
-#endif // SCOREBOARD_H
+#endif 

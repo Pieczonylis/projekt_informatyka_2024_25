@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 
+
 bool saveScoreboard(const std::vector<PlayerData>& players)
 {
     std::ofstream file("scoreboard.txt");
@@ -11,8 +12,7 @@ bool saveScoreboard(const std::vector<PlayerData>& players)
         std::cerr << "Nie mozna otworzyc scoreboard.txt do zapisu!\n";
         return false;
     }
-
-    file << players.size() << "\n";
+        file << players.size() << "\n";
     for (auto& p : players)
     {
         file << p.nick << " " << p.score << "\n";
@@ -20,7 +20,6 @@ bool saveScoreboard(const std::vector<PlayerData>& players)
     file.close();
     return true;
 }
-
 bool loadScoreboard(std::vector<PlayerData>& players)
 {
     std::ifstream file("scoreboard.txt");
@@ -44,7 +43,6 @@ bool loadScoreboard(std::vector<PlayerData>& players)
 
     file.close();
 
-    // sort malej¹co po score
     std::sort(players.begin(), players.end(),
         [](const PlayerData& a, const PlayerData& b) { return a.score > b.score; }
     );

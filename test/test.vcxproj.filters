@@ -76,5 +76,8 @@
     <Image Include="resources\tree.png">
       <Filter>Pliki zasobów</Filter>
     </Image>
+    <Image Include="resources\bgscore.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
   </ItemGroup>
 </Project>

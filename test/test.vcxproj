@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\bg2.png" />
+    <Image Include="resources\bgscore.png" />
     <Image Include="resources\bgSpace1.png" />
     <Image Include="resources\bgSpace2.png" />
     <Image Include="resources\bgWinter1.png" />

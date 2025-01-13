@@ -3,18 +3,16 @@
 
 #include <SFML/Graphics.hpp>
 
-/**
- * Struktura do „ruchomych” dekoracji t³a (psy, chmury, itp.)
- */
+//strukt do moving sprajtów
 struct MovingSprite
 {
     sf::Sprite sprite;
     sf::Vector2f velocity;
 };
 
-/**
- * Klasa ³aduj¹ca i zwracaj¹ca ró¿ne t³a w zale¿noœci od numeru poziomu.
- */
+
+// t³a w zale¿noœci od poziomu
+
 class BackgroundManager
 {
 private:
@@ -32,4 +30,4 @@ public:
     sf::Texture& getBackgroundTexture(int level);
 };
 
-#endif // BACKGROUNDS_H
+#endif

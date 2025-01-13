@@ -27,6 +27,8 @@ class Game
 {
 private:
     sf::RenderWindow window;
+    //bool roboczy do nicków
+    bool nicknameEntered;
 
     // Obiekty gry
     Ball ball;
